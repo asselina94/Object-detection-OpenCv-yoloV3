@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--webcam', help="True/False", default=False)
 parser.add_argument('--play_video', help="Tue/False", default=True)
 parser.add_argument('--image', help="Tue/False", default=False)
-parser.add_argument('--video_path', help="Path of video file", default="videos/b.mp4")
+parser.add_argument('--video_path', help="Path of video file", default="videos/wa.mp4")
 parser.add_argument('--image_path', help="Path of image to detect objects", default="Images/bicycle.jpg")
 parser.add_argument('--verbose', help="To print statements", default=True)
 args = parser.parse_args()
@@ -100,22 +100,37 @@ def measure_class():
 def draw_labels(boxes, confs, colors, class_ids, classes, img): 
 	indexes = cv2.dnn.NMSBoxes(boxes, confs, 0.5, 0.4)
 	font = cv2.FONT_HERSHEY_PLAIN
+	eating=0
+	countbox=0
 	if confs:
 		fish_count = 0
+		acc = measure_class()
 		for i in range(len(boxes)):
+			
 			if i in indexes:
 				fish_count += 1
 				x, y, w, h = boxes[i]
 				shrimp_timeline.append(boxes[i])
 				acc_value = measure_class()
-				label = "speed is " + str(acc_value / 100)
+				#acc = 
+				label = "avg speed is " + str(int(acc_value / 100))
+				cv2.rectangle(img, (0, 3), (200, 75), (0, 0, 0), 1)
+				cv2.putText(img, "           ,"  + "avg speed " + str(int(acc/100)), (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 25, 25), 4)
+
+				if y < 150:
+					eating += 1
+				if eating == 0:
+					cv2.putText(img, "                                                    "+"Fish not eating ", (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 77, 77), 4)
+			
 
 				color = colors[i]
-				cv2.rectangle(img, (x,y), (x+w, y+h), color, 2)
+				cv2.rectangle(img, (x,y), (x+w, y+h), color, 5)
 				cv2.putText(img, label, (x, y - 5), font, 2, color, 2)
 		print(colors[3])
 		cv2.rectangle(img, (0, 0), (200, 75), (0, 0, 0), -1)
-		cv2.putText(img, "fish count is " + str(fish_count), (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+		cv2.putText(img, "Count is " +  str(fish_count), (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 77, 77), 4)
+		#cv2.putText(img, "avg speed " + str(acc_value/100), (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (300, 300, 300), 2)
+		cv2.putText(img, "                                     "+"Eating " +  str(eating), (20, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 77, 77), 4)
 		cv2.imshow("Image", img)
 
 def image_detect(img_path): 
