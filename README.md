@@ -1,6 +1,6 @@
 # Object-detection-OpenCv-yoloV3
 
-https://user-images.githubusercontent.com/54496175/185114590-b14d523a-b4cb-40ad-9458-221b459e6c26.mp4
+Video Demo https://user-images.githubusercontent.com/54496175/185114590-b14d523a-b4cb-40ad-9458-221b459e6c26.mp4 
 
 The directories (in order of importance) are:
 
