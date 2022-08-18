@@ -1,5 +1,7 @@
 # Object-detection-OpenCv-yoloV3
 
+https://user-images.githubusercontent.com/54496175/185114590-b14d523a-b4cb-40ad-9458-221b459e6c26.mp4
+
 The directories (in order of importance) are:
 
 yolo-coco/ : The YOLOv3 object detector pre-trained (on the COCO dataset) model files. These were trained by the Darknet team.
@@ -13,5 +15,4 @@ Packages used: cv2,numpy,argparse,time.
 language used: Python, Opencv is used along yolo for object detection using image processing.
 
 
-https://user-images.githubusercontent.com/54496175/185114590-b14d523a-b4cb-40ad-9458-221b459e6c26.mp4
 
