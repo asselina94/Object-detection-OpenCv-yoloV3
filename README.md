@@ -13,7 +13,7 @@ output/ : Output videos that have been processed by YOLO and annotated with boun
 
 Packages used: cv2,numpy,argparse,time. 
 
-language used: Python, Opencv is used along yolo for object detection using image processing
+language used: Python, Opencv is used along yolo for object detection using image processing.
 
 
 
